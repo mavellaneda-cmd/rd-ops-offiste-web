@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/revenued-design-system-0f8837e6-af83-4307-84f9-210db56bf9d1/colors_and_type.css">
+  <link rel="stylesheet" href="_ds/revenued-design-system-0f8837e6-af83-4307-84f9-210db56bf9d1/styles.css">
+  <script src="_ds/revenued-design-system-0f8837e6-af83-4307-84f9-210db56bf9d1/_ds_bundle.js"></script>
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin: 0; background: #fff; font-family: 'Suisse Intl', sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    a { color: #2851F5; text-decoration: none; }
+    a:hover { color: #1433E1; text-decoration: underline; }
+    ::selection { background: #D9E6FF; }
+  </style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;color:#000724">
+
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #DCE2F9;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(20px,5vw,64px)">
+    <div style="display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px;letter-spacing:-0.01em">
+      <svg width="26" height="20" viewBox="0 0 26 20" fill="none">
+        <path d="M1,2 C10,2 12,10 24,10" stroke="#2851F5" stroke-width="1.6"></path>
+        <path d="M1,10 L24,10" stroke="#2851F5" stroke-width="1.6" opacity="0.7"></path>
+        <path d="M1,18 C10,18 12,10 24,10" stroke="#2851F5" stroke-width="1.6" opacity="0.5"></path>
+        <circle cx="24" cy="10" r="2.5" fill="#FFCB0D"></circle>
+      </svg>
+      One team, one model
+    </div>
+    <div style="display:flex;gap:4px;background:#F5F8FF;padding:4px;border-radius:12px">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="4">
+        <button onClick="{{ item.onClick }}" style="{{ item.style }}">{{ item.label }}</button>
+      </sc-for>
+    </div>
+  </nav>
+
+  <!-- HOME -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <main>
+      <!-- HERO -->
+      <section style="background:#000724;color:#fff;padding:clamp(56px,10vw,140px) clamp(20px,5vw,64px) clamp(96px,14vw,180px);position:relative;overflow:hidden">
+        <div style="position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,#2851F5 0%,transparent 70%);opacity:0.35"></div>
+        <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:24px;position:relative;align-items:center">
+          <div style="max-width:640px">
+            <div style="color:#FFCB0D;font-size:13px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:20px">R&amp;D + Ops Offsite · November 15–20</div>
+            <h1 style="font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-0.02em;font-weight:600;margin:0 0 20px">One team.<br>One model.</h1>
+            <p style="font-size:clamp(17px,2vw,20px);color:#C7CEEF;max-width:560px;line-height:1.5;margin:0 0 36px">
+              A week for R&amp;D and Ops to build around a single operating model — how we plan, ship, and support the business together.
+            </p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px">
+              <x-import component-from-global-scope="DesignSystem_0f8837.Button" hint-size="auto,44px" onClick="{{ goAgenda }}">View agenda</x-import>
+              <x-import component-from-global-scope="DesignSystem_0f8837.Button" hint-size="auto,44px" variant="secondary" onClick="{{ goLogistics }}">Logistics</x-import>
+            </div>
+            <div class="mono" style="display:inline-flex;border:1px solid rgba(255,255,255,0.16);border-radius:10px;overflow:hidden">
+              <sc-for list="{{ countdownParts }}" as="part" hint-placeholder-count="4">
+                <div style="{{ part.cellStyle }}">
+                  <div style="font-size:clamp(20px,2.6vw,26px);font-weight:600;letter-spacing:-0.01em">{{ part.value }}</div>
+                  <div style="font-size:10px;color:#9AA6D9;letter-spacing:1px;text-transform:uppercase;margin-top:3px">{{ part.label }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <svg viewBox="0 0 380 260" style="width:100%;height:auto;max-width:360px;display:block;margin:0 auto" fill="none">
+              <path d="M0,40 C130,40 150,130 260,130" stroke="#3D63F7" stroke-width="1.5"></path>
+              <path d="M0,130 L260,130" stroke="#3D63F7" stroke-width="1.5" opacity="0.7"></path>
+              <path d="M0,220 C130,220 150,130 260,130" stroke="#3D63F7" stroke-width="1.5" opacity="0.5"></path>
+              <path d="M260,130 L380,130" stroke="#FFCB0D" stroke-width="1.5"></path>
+              <circle cx="3" cy="40" r="4" fill="#000724" stroke="#8EB8FF" stroke-width="1.5"></circle>
+              <circle cx="3" cy="130" r="4" fill="#000724" stroke="#8EB8FF" stroke-width="1.5"></circle>
+              <circle cx="3" cy="220" r="4" fill="#000724" stroke="#8EB8FF" stroke-width="1.5"></circle>
+              <circle cx="260" cy="130" r="5" fill="#FFCB0D"></circle>
+              <text x="12" y="32" class="mono" font-size="11" fill="#9AA6D9">dev/</text>
+              <text x="12" y="124" class="mono" font-size="11" fill="#9AA6D9">product/</text>
+              <text x="12" y="236" class="mono" font-size="11" fill="#9AA6D9">ops/</text>
+              <text x="270" y="122" class="mono" font-size="11" fill="#FFCB0D">merge</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- OPERATING MODEL / TWIST -->
+      <section style="background:#fff;border-radius:32px 32px 0 0;position:relative;z-index:2;margin-top:-40px;box-shadow:0 -16px 40px rgba(0,7,36,0.10);padding:clamp(56px,9vw,100px) clamp(20px,5vw,64px) clamp(48px,8vw,88px);max-width:1280px;margin-left:auto;margin-right:auto">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center">
+          <div>
+            <div style="color:#2851F5;font-size:13px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:14px">Why we're here</div>
+            <h2 style="font-size:clamp(28px,3.5vw,38px);letter-spacing:-0.015em;font-weight:600;margin:0 0 16px;line-height:1.15">Dev and Product, finally in step.</h2>
+            <p style="font-size:17px;color:#50505E;line-height:1.6;margin:0 0 16px">
+              This offsite is built around Development and Product coming together under one operating model — one planning rhythm, one roadmap, one bar for done.
+            </p>
+            <p style="font-size:17px;color:#50505E;line-height:1.6;margin:0">
+              Ops joins the week too, aligning HR, payroll, and business ops to the same cadence.
+            </p>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#DCE2F9;border:1px solid #DCE2F9;border-radius:16px;overflow:hidden">
+            <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+              <div style="background:#fff;padding:26px 24px">
+                <div class="mono" style="font-size:12px;color:#8EB8FF;margin-bottom:12px">{{ p.index }}</div>
+                <div style="font-size:16px;font-weight:600;margin-bottom:6px">{{ p.title }}</div>
+                <div style="font-size:14px;color:#767689;line-height:1.5">{{ p.body }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOCATION -->
+      <section style="padding:clamp(48px,8vw,80px) clamp(20px,5vw,64px);max-width:1280px;margin:0 auto">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,440px);gap:48px;align-items:center">
+          <div>
+            <div class="mono" style="color:#2851F5;font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:14px">Logistics</div>
+            <h2 style="font-size:clamp(28px,3.5vw,38px);letter-spacing:-0.015em;font-weight:600;margin:0 0 16px">Kemer, Turkey</h2>
+            <p style="font-size:16px;color:#50505E;line-height:1.6;margin:0 0 28px;max-width:440px">Everything you need before you land — flights, hotel, insurance, packing — lives on the Travel info and Before arrival pages.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;margin-bottom:32px">
+              <sc-for list="{{ locationFacts }}" as="f" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <span class="mono" style="font-size:14px;color:#8EB8FF">{{ f.mark }}</span>
+                  <span style="font-size:14px;font-weight:500">{{ f.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <x-import component-from-global-scope="DesignSystem_0f8837.Button" hint-size="auto,44px" onClick="{{ goLogistics }}">Travel info</x-import>
+              <x-import component-from-global-scope="DesignSystem_0f8837.Button" hint-size="auto,44px" variant="secondary" onClick="{{ goBeforeArrival }}">Before arrival</x-import>
+            </div>
+          </div>
+          <image-slot id="location-photo" shape="rounded" radius="20" placeholder="Venue photo" style="width:100%;aspect-ratio:4/3;display:block"></image-slot>
+        </div>
+      </section>
+
+      <!-- PRE-WORK -->
+      <section style="padding:clamp(40px,7vw,72px) clamp(20px,5vw,64px);background:#F5F8FF">
+        <div style="max-width:1280px;margin:0 auto">
+          <h2 style="font-size:clamp(24px,3vw,30px);letter-spacing:-0.015em;font-weight:600;margin:0 0 8px">Pre-work</h2>
+          <p style="color:#50505E;font-size:15px;margin:0 0 28px">A few things to do before you land — five minutes each.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+            <sc-for list="{{ prework }}" as="item" hint-placeholder-count="3">
+              <div style="background:#fff;border:1px solid #DCE2F9;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
+                <x-import component-from-global-scope="DesignSystem_0f8837.Badge" hint-size="auto,24px" tone="accent">{{ item.tag }}</x-import>
+                <div style="font-size:16px;font-weight:600">{{ item.title }}</div>
+                <div style="font-size:14px;color:#767689;line-height:1.5;flex:1">{{ item.body }}</div>
+                <a href="{{ item.href }}" style="font-size:14px;font-weight:500">{{ item.cta }} →</a>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </main>
+  </sc-if>
+
+  <!-- AGENDA -->
+  <sc-if value="{{ isAgenda }}" hint-placeholder-val="{{ false }}">
+    <main style="padding:clamp(40px,7vw,72px) clamp(20px,5vw,64px);max-width:1000px;margin:0 auto;width:100%;box-sizing:border-box">
+      <div style="color:#2851F5;font-size:13px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:12px">Nov 15–20</div>
+      <h1 style="font-size:clamp(32px,4vw,44px);letter-spacing:-0.02em;font-weight:600;margin:0 0 12px">Agenda</h1>
+      <p style="color:#50505E;font-size:16px;margin:0 0 40px;max-width:640px">Six days, one team. Sessions marked <b>R&amp;D + Ops</b> are joint working blocks — everything else is open to all.</p>
+
+      <sc-for list="{{ days }}" as="day" hint-placeholder-count="6">
+        <div style="margin-bottom:36px">
+          <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #DCE2F9">
+            <div style="font-size:20px;font-weight:600">{{ day.label }}</div>
+            <div style="font-size:14px;color:#767689">{{ day.date }}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ day.sessions }}" as="s" hint-placeholder-count="3">
+              <div style="display:grid;grid-template-columns:96px 1fr auto;gap:16px;align-items:center;padding:14px 16px;border:1px solid #DCE2F9;border-radius:12px;background:#fff">
+                <div style="font-size:13px;color:#767689;font-variant-numeric:tabular-nums">{{ s.time }}</div>
+                <div>
+                  <div style="font-size:15px;font-weight:500;margin-bottom:2px">{{ s.title }}</div>
+                  <div style="font-size:13px;color:#767689">{{ s.detail }}</div>
+                </div>
+                <x-import component-from-global-scope="DesignSystem_0f8837.Badge" hint-size="auto,22px" tone="{{ s.tone }}">{{ s.badge }}</x-import>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </main>
+  </sc-if>
+
+  <!-- LOGISTICS -->
+  <sc-if value="{{ isLogistics }}" hint-placeholder-val="{{ false }}">
+    <main style="padding:clamp(40px,7vw,72px) clamp(20px,5vw,64px);max-width:760px;margin:0 auto;width:100%;box-sizing:border-box">
+      <div class="mono" style="color:#2851F5;font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:12px">Getting there</div>
+      <h1 style="font-size:clamp(32px,4vw,44px);letter-spacing:-0.02em;font-weight:600;margin:0 0 12px">Everything you need before you fly</h1>
+
+      <div style="margin:32px 0 40px">
+        <h3 style="font-size:17px;font-weight:600;margin:0 0 12px">Flights &amp; airport transfers</h3>
+        <p style="font-size:15px;color:#50505E;line-height:1.7;margin:0 0 12px">If your flight was booked by our travel coordinator, keep your e-ticket accessible offline &mdash; you may be asked to show your return ticket on arrival. All tickets are also saved in the shared Google Drive folder.</p>
+        <p style="font-size:15px;color:#50505E;line-height:1.7;margin:0 0 12px">Airport transfers to the hotel are arranged for everyone. Look for a representative holding a TAXDOME sign in the arrivals area. Return transfers are arranged based on your flight time.</p>
+        <div class="mono" style="font-size:13px;color:#2851F5;margin-bottom:12px">Arrival: Sep 20, 2026 · Departure: Sep 26, 2026</div>
+        <p style="font-size:15px;color:#50505E;line-height:1.7;margin:0">Arriving at a different time, or have specific needs? Contact your travel coordinator to arrange an individual transfer.</p>
+      </div>
+
+      <div style="margin-bottom:40px">
+        <h3 style="font-size:17px;font-weight:600;margin:0 0 12px">Hotel &amp; check-in</h3>
+        <image-slot id="hotel-photo" shape="rounded" radius="16" placeholder="AVA Resort Cancun — tower and main pool" style="width:100%;aspect-ratio:16/9;display:block;margin-bottom:16px"></image-slot>
+        <div style="font-size:16px;font-weight:600;margin-bottom:6px">AVA Resort Cancun</div>
+        <p style="font-size:15px;color:#50505E;line-height:1.7;margin:0 0 14px">Your home for the week &mdash; an oceanfront, all-inclusive resort just south of the Cancún Hotel Zone.</p>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ hotelFacts }}" as="h" hint-placeholder-count="6">
+            <div style="display:grid;grid-template-columns:20px 1fr;gap:12px">
+              <span class="mono" style="color:#8EB8FF">&mdash;</span>
+              <span style="font-size:15px;color:#50505E;line-height:1.6">{{ h }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <p style="font-size:14px;color:#767689;margin:14px 0 0">Rooming assignments will be shared separately.</p>
+      </div>
+
+      <div style="margin-bottom:40px">
+        <h3 style="font-size:17px;font-weight:600;margin:0 0 10px">Travel insurance</h3>
+        <p style="font-size:15px;color:#50505E;line-height:1.7;margin:0 0 12px">TaxDome will be purchasing travel insurance for everyone who needs or requests it &mdash; you don't need to arrange anything yourself.</p>
+        <p style="font-size:15px;color:#50505E;line-height:1.7;margin:0">Details are still being finalized. Once your policy is issued, we'll share it here along with the provider's contact info and your policy number.</p>
+      </div>
+
+      <div style="margin-bottom:40px">
+        <h3 style="font-size:17px;font-weight:600;margin:0 0 10px">Meals &amp; dietary preferences</h3>
+        <p style="font-size:15px;color:#50505E;line-height:1.7;margin:0 0 12px">All meals are covered as part of the all-inclusive stay &mdash; breakfast through dinner, plus unlimited specialty restaurants.</p>
+        <p style="font-size:15px;color:#50505E;line-height:1.7;margin:0">Dietary restrictions or allergies? Let your travel coordinator know as soon as possible so the resort can prepare.</p>
+      </div>
+
+      <div style="margin-bottom:40px">
+        <h3 style="font-size:17px;font-weight:600;margin:0 0 16px">Dress code</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin-bottom:16px">
+          <sc-for list="{{ dressCode }}" as="d" hint-placeholder-count="4">
+            <div>
+              <div class="mono" style="font-size:11px;color:#8EB8FF;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:6px">{{ d.label }}</div>
+              <div style="font-size:15px;color:#50505E;line-height:1.5">{{ d.value }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <p style="font-size:14px;color:#767689;margin:0">Pack something blue for the Welcome Dinner on Sunday night.</p>
+      </div>
+
+      <div style="margin-bottom:40px">
+        <h3 style="font-size:17px;font-weight:600;margin:0 0 16px">What to pack</h3>
+        <sc-for list="{{ packingGroups }}" as="g" hint-placeholder-count="3">
+          <div style="margin-bottom:18px">
+            <div class="mono" style="font-size:11px;color:#8EB8FF;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:8px">{{ g.label }}</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="3">
+                <div style="display:grid;grid-template-columns:20px 1fr;gap:12px">
+                  <span class="mono" style="color:#8EB8FF">&mdash;</span>
+                  <span style="font-size:15px;color:#50505E;line-height:1.6">{{ i }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="background:#F5F8FF;border:1px solid #DCE2F9;border-radius:16px;padding:24px;margin-bottom:40px">
+        <div class="mono" style="font-size:11px;color:#8EB8FF;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:8px">Please do not bring</div>
+        <div style="font-size:14px;color:#50505E;line-height:1.6">Illegal substances &middot; weapons of any kind &middot; drones without permits &middot; e-cigarettes/vapes &middot; excessive medication without prescriptions.</div>
+      </div>
+
+      <div style="border-top:1px solid #DCE2F9;padding-top:32px">
+        <h3 style="font-size:17px;font-weight:600;margin:0 0 20px">Contacts</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <sc-for list="{{ contactGroups }}" as="grp" hint-placeholder-count="2">
+            <div>
+              <div style="font-size:15px;font-weight:600;margin-bottom:4px">{{ grp.title }}</div>
+              <div style="font-size:13px;color:#767689;margin-bottom:12px">{{ grp.sub }}</div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <sc-for list="{{ grp.people }}" as="p" hint-placeholder-count="2">
+                  <div style="font-size:14px">{{ p }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
+  <!-- BEFORE ARRIVAL -->
+  <sc-if value="{{ isBeforeArrival }}" hint-placeholder-val="{{ false }}">
+    <main style="padding:clamp(40px,7vw,72px) clamp(20px,5vw,64px);max-width:760px;margin:0 auto;width:100%;box-sizing:border-box">
+      <div class="mono" style="color:#2851F5;font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:12px">Before arrival</div>
+      <h1 style="font-size:clamp(32px,4vw,44px);letter-spacing:-0.02em;font-weight:600;margin:0 0 12px">Get ready with this checklist</h1>
+      <p style="color:#50505E;font-size:16px;line-height:1.6;margin:0 0 32px;max-width:560px">Everything you need before arrival to ensure peak performance throughout the event.</p>
+
+      <div style="border:1px solid #DCE2F9;border-radius:16px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:56px">
+        <div>
+          <div class="mono" style="font-size:11px;color:#8EB8FF;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:8px">One quick action item</div>
+          <div style="font-size:16px;font-weight:600;margin-bottom:4px">Join the group chat</div>
+          <div style="font-size:14px;color:#767689">Connect with the team before Cancún.</div>
+        </div>
+        <x-import component-from-global-scope="DesignSystem_0f8837.Badge" hint-size="auto,24px" tone="warning">Soon</x-import>
+      </div>
+
+      <div class="mono" style="color:#2851F5;font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:12px">Preparation guide</div>
+      <h2 style="font-size:clamp(24px,3vw,30px);letter-spacing:-0.015em;font-weight:600;margin:0 0 32px">How to prepare yourself for offsites</h2>
+
+      <div style="margin-bottom:40px">
+        <h3 style="font-size:17px;font-weight:600;margin:0 0 10px">Why we host offsites</h3>
+        <p style="font-size:15px;color:#50505E;line-height:1.7;margin:0">Offsites are intentional time away from the day-to-day so we can think bigger, connect deeper, celebrate wins, and align on where we're going next. This week is an investment in how we work together — we step out of routine so we can raise the standard when we step back in.</p>
+      </div>
+
+      <div style="margin-bottom:40px">
+        <h3 style="font-size:17px;font-weight:600;margin:0 0 14px">How to get the most out of it</h3>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ prepTips }}" as="t" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:20px 1fr;gap:12px">
+              <span class="mono" style="color:#8EB8FF">—</span>
+              <span style="font-size:15px;color:#50505E;line-height:1.6">{{ t }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="margin-bottom:40px">
+        <h3 style="font-size:17px;font-weight:600;margin:0 0 10px">A quick note on conduct</h3>
+        <p style="font-size:15px;color:#50505E;line-height:1.7;margin:0 0 14px">We're here to collaborate, celebrate, and build momentum — and we want everyone to feel safe and respected.</p>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ conductRules }}" as="r" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:20px 1fr;gap:12px">
+              <span class="mono" style="color:#8EB8FF">—</span>
+              <span style="font-size:15px;color:#50505E;line-height:1.6">{{ r }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid #DCE2F9;padding-top:32px">
+        <h3 style="font-size:17px;font-weight:600;margin:0 0 10px">Travel &amp; expenses — the practical stuff</h3>
+        <p style="font-size:15px;color:#50505E;line-height:1.7;margin:0 0 12px">The essentials are covered: flights, hotel, meals, transfers, and team activities. Personal purchases and extras are your responsibility.</p>
+        <a href="#" style="font-size:14px;font-weight:500">Travel &amp; expense policy →</a>
+      </div>
+    </main>
+  </sc-if>
+
+  <!-- RECAP -->
+  <sc-if value="{{ isRecap }}" hint-placeholder-val="{{ false }}">
+    <main style="padding:clamp(40px,7vw,72px) clamp(20px,5vw,64px);max-width:900px;margin:0 auto;width:100%;box-sizing:border-box;text-align:center">
+      <div style="color:#2851F5;font-size:13px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:12px">Coming November 20</div>
+      <h1 style="font-size:clamp(32px,4vw,44px);letter-spacing:-0.02em;font-weight:600;margin:0 0 16px">Photo recap</h1>
+      <p style="color:#50505E;font-size:16px;margin:0 auto 40px;max-width:480px">We'll post highlights from the week right here once the offsite wraps — check back after November 20.</p>
+      <div style="border:1px dashed #DCE2F9;border-radius:20px;padding:64px 24px;color:#A2A2AF;font-size:14px">Photos will appear here</div>
+    </main>
+  </sc-if>
+
+  <footer style="padding:32px clamp(20px,5vw,64px);border-top:1px solid #DCE2F9;color:#767689;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
+    <span>R&amp;D + Ops Offsite · November 15–20</span>
+    <span>One team, one model.</span>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { page: 'home', now: Date.now() };
+
+  componentDidMount() {
+    this._t = setInterval(() => this.setState({ now: Date.now() }), 1000);
+  }
+  componentWillUnmount() { clearInterval(this._t); }
+
+  renderVals() {
+    const page = this.state.page;
+    const target = new Date('2026-11-15T09:00:00');
+    let diff = Math.max(0, target - new Date(this.state.now));
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+
+    const goHome = () => this.setState({ page: 'home' });
+    const goAgenda = () => this.setState({ page: 'agenda' });
+    const goLogistics = () => this.setState({ page: 'logistics' });
+    const goRecap = () => this.setState({ page: 'recap' });
+    const goBeforeArrival = () => this.setState({ page: 'before-arrival' });
+
+    const navBtnStyle = (key) => {
+      const active = page === key;
+      return {
+        border: 'none', cursor: 'pointer', padding: '8px 16px', borderRadius: '9px',
+        fontSize: '14px', fontWeight: 500, fontFamily: 'inherit',
+        background: active ? '#fff' : 'transparent',
+        color: active ? '#000724' : '#50505E',
+        boxShadow: active ? '0 1px 3px rgba(70,70,83,0.15)' : 'none'
+      };
+    };
+
+    return {
+      isHome: page === 'home', isAgenda: page === 'agenda', isLogistics: page === 'logistics', isRecap: page === 'recap',
+      isBeforeArrival: page === 'before-arrival',
+      goAgenda, goLogistics, goBeforeArrival,
+      navItems: [
+        { label: 'Home', onClick: goHome, style: navBtnStyle('home') },
+        { label: 'Agenda', onClick: goAgenda, style: navBtnStyle('agenda') },
+        { label: 'Logistics', onClick: goLogistics, style: navBtnStyle('logistics') },
+        { label: 'Before arrival', onClick: goBeforeArrival, style: navBtnStyle('before-arrival') },
+        { label: 'Recap', onClick: goRecap, style: navBtnStyle('recap') }
+      ],
+      locationFacts: [
+        { mark: '01', label: 'Nov 16–20, 2026' },
+        { mark: '02', label: 'Resort' },
+        { mark: '03', label: 'Group flights & transfers' },
+        { mark: '04', label: '28°C avg · pack light' }
+      ],
+      prepTips: [
+        'Be present. Protect the week — minimize distractions and give yourself permission to unplug.',
+        'Stay curious. Ask questions, challenge ideas — the best insights come from unexpected conversations.',
+        "Lean in fully, whether it's a strategy session or a late-night conversation. Growth doesn't live in the background.",
+        'Connect beyond roles — get to know the humans behind the Slack messages and Zoom squares.',
+        'Take care of your energy. Rest, hydrate, pace yourself — five days go fast.'
+      ],
+      conductRules: [
+        "Respect everyone's boundaries, time, and privacy.",
+        'Be mindful of alcohol consumption.',
+        'Ask before taking or sharing photos of others.',
+        'Speak up if you see or experience something uncomfortable.',
+        'Keep company-sensitive information confidential.'
+      ],
+      countdownCompact: `${d}d ${h}h to go`,
+      countdownParts: ['Days', 'Hours', 'Min', 'Sec'].map((label, i) => ({
+        value: [d, h, m, s][i], label,
+        cellStyle: { padding: '12px 18px', textAlign: 'center', borderRight: i < 3 ? '1px solid rgba(255,255,255,0.16)' : 'none' }
+      })),
+      hexCluster: [
+        { top: '4%', left: '20%', size: '64px', color: '#2851F5', opacity: 0.5, dur: '7s', delay: '0s' },
+        { top: '2%', left: '55%', size: '38px', color: '#FFCB0D', opacity: 0.4, dur: '6s', delay: '0.4s' },
+        { top: '24%', left: '8%', size: '46px', color: '#FFCB0D', opacity: 0.3, dur: '8s', delay: '1s' },
+        { top: '30%', left: '68%', size: '80px', color: '#2851F5', opacity: 0.35, dur: '9s', delay: '0.6s' },
+        { top: '52%', left: '30%', size: '52px', color: '#fff', opacity: 0.08, dur: '7.5s', delay: '1.4s' },
+        { top: '60%', left: '75%', size: '30px', color: '#FFCB0D', opacity: 0.45, dur: '5.5s', delay: '0.2s' },
+        { top: '72%', left: '12%', size: '68px', color: '#2851F5', opacity: 0.3, dur: '8.5s', delay: '1.8s' }
+      ],
+      pillars: [
+        { title: 'Shared roadmap', body: 'One planning cadence across product and engineering.' },
+        { title: 'Shared metrics', body: 'The same scoreboard, whatever team you sit on.' },
+        { title: 'Shared rituals', body: 'Standups, reviews, and retros run the same way, everywhere.' },
+        { title: 'Shared ownership', body: 'No hand-offs into a void — one accountable team end to end.' }
+      ].map((p, i) => ({ ...p, index: String(i + 1).padStart(2, '0') })),
+      prework: [
+        { tag: 'Survey', title: 'Operating model survey', body: 'Tell us what\'s working and what isn\'t before we redesign it together.', cta: 'Take the survey', href: '#' },
+        { tag: 'Read', title: 'Current-state one-pager', body: 'A 5-minute read on how R&D runs today.', cta: 'Read the doc', href: '#' },
+        { tag: 'Sign up', title: 'Pick your breakout track', body: 'Choose the working sessions you want a seat at.', cta: 'Choose a track', href: '#' }
+      ],
+      days: [
+        { label: 'Sat', date: 'Nov 15', sessions: [
+          { time: 'All day', title: 'Travel day', detail: 'Arrivals and check-in', tone: 'neutral', badge: 'All teams' }
+        ]},
+        { label: 'Sun', date: 'Nov 16', sessions: [
+          { time: '18:00', title: 'Welcome dinner', detail: 'Kickoff and introductions', tone: 'neutral', badge: 'All teams' }
+        ]},
+        { label: 'Mon', date: 'Nov 17', sessions: [
+          { time: '09:00', title: 'State of the business', detail: 'Where we are, where we\'re headed', tone: 'accent', badge: 'R&D + Ops' },
+          { time: '11:00', title: 'One operating model: the case for change', detail: 'Framing the new way of working', tone: 'accent', badge: 'R&D + Ops' },
+          { time: '14:00', title: 'Breakout tracks', detail: 'Product, engineering, and ops deep dives', tone: 'neutral', badge: 'By track' }
+        ]},
+        { label: 'Tue', date: 'Nov 18', sessions: [
+          { time: '09:00', title: 'Cross-team working sessions', detail: 'Design the shared rituals together', tone: 'accent', badge: 'R&D + Ops' },
+          { time: '13:00', title: 'Pairing lunch', detail: 'Mixed R&D/Ops tables, no laptops', tone: 'neutral', badge: 'All teams' },
+          { time: '15:00', title: 'Team activity', detail: 'Off-site excursion', tone: 'neutral', badge: 'All teams' }
+        ]},
+        { label: 'Wed', date: 'Nov 19', sessions: [
+          { time: '09:00', title: 'Commitments & ownership', detail: 'Who owns what in the new model', tone: 'accent', badge: 'R&D + Ops' },
+          { time: '11:30', title: 'Show & tell', detail: 'Breakout tracks present back', tone: 'neutral', badge: 'By track' },
+          { time: '19:00', title: 'Closing celebration', detail: 'One team dinner', tone: 'neutral', badge: 'All teams' }
+        ]},
+        { label: 'Thu', date: 'Nov 20', sessions: [
+          { time: 'All day', title: 'Travel day', detail: 'Departures', tone: 'neutral', badge: 'All teams' }
+        ]}
+      ],
+      hotelFacts: [
+        'Check-in: 3 PM · early check-in requested but not guaranteed',
+        'Complete pre-check-in online or via the AVA app before you arrive to skip the lines',
+        'Breakfast, lunch, buffet dinner & unlimited specialty restaurant dinners across 17+ bars & restaurants',
+        'Snack bar between meals + 24-hour café',
+        'Beach towels provided',
+        'Check-out: Sep 26 at 12 PM'
+      ],
+      dressCode: [
+        { label: 'Daytime', value: 'Casual business attire' },
+        { label: 'Activities', value: 'Activewear & comfortable shoes' },
+        { label: 'Evenings', value: 'Smart casual' },
+        { label: 'Nights', value: 'Resort casual / casual elegance' }
+      ],
+      packingGroups: [
+        { label: 'Essentials', items: [
+          'Light clothing for warm weather (80–85°F / 27–29°C)',
+          'Swimwear, closed-toe shoes for team-building activities, athletic shoes',
+          'Sunscreen SPF 50+, light jacket for A/C spaces'
+        ]},
+        { label: 'Optional but recommended', items: [
+          'Hat, sunglasses, reusable water bottle',
+          'Power adapter (Mexico: Type A/B, 127V) & portable charger'
+        ]}
+      ],
+      contactGroups: [
+        { title: 'Travel coordinators', sub: 'Your point of contact for flights & transfers', people: ['Julia Schwartz — Slack', 'Kateryna Danylenko — Slack'] },
+        { title: 'Offsite coordinators', sub: 'Urgent needs during the trip', people: ['Micaela Avellaneda — Slack', 'Masha Karachun — Slack', 'Gloria Pieroli — Slack', 'Diego Vazquez — Slack'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
